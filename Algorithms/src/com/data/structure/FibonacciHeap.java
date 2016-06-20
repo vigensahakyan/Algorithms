@@ -135,30 +135,12 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         }
     }
 
-    /**
-     * Decreases the key value for a heap node, given the new value
-     * to take on. The structure of the heap may be changed, but will
-     * not be consolidated.
-     *
-     * <p><em>Running time: O(1) amortized</em></p>
-     *
-     * @param  x  node to decrease the key of
-     * @param  k  new key value for node x
-     * @exception  IllegalArgumentException
-     *             if k is larger than x.key value.
-     */
+    
     public void decreaseKey(Node<T> x, T newData, Integer k) {
         decreaseKey(x, newData, k, false);
     }
 
-    /**
-     * Decrease the key value of a node, or simply bubble it up to the
-     * top of the heap in preparation for a delete operation.
-     *
-     * @param  x       node to decrease the key of.
-     * @param  k       new key value for node x.
-     * @param  delete  true if deleting node (in which case, k is ignored).
-     */
+   
     private void decreaseKey(Node<T> x, T newData, Integer k, boolean delete) {
         if (!delete && k.compareTo(x.key) > 0) {
             throw new IllegalArgumentException("cannot increase key value");
@@ -175,14 +157,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         }
     }
 
-    /**
-     * Deletes a Node<T> from the heap given the reference to the node.
-     * The trees in the heap will be consolidated, if necessary.
-     *
-     * <p><em>Running time: O(log n) amortized</em></p>
-     *
-     * @param  x  node to remove from heap.
-     */
+   
     public void delete(Node<T> x) {
         // make x as small as possible
         decreaseKey(x, x.data, 0 , true);
@@ -190,29 +165,11 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         removeMin();
     }
 
-    /**
-     * Tests if the Fibonacci heap is empty or not. Returns true if
-     * the heap is empty, false otherwise.
-     *
-     * <p><em>Running time: O(1)</em></p>
-     *
-     * @return  true if the heap is empty, false otherwise.
-     */
+   
     public boolean isEmpty() {
         return min == null;
     }
 
-    /**
-     * Inserts a new data element into the heap. No heap consolidation
-     * is performed at this time, the new node is simply inserted into
-     * the root list of this heap.
-     *
-     * <p><em>Running time: O(1)</em></p>
-     *
-     * @param  x    data object to insert into heap.
-     * @param  key  key value associated with data object.
-     * @return newly created heap node.
-     */
     public Node insert(T x, Integer key) {
         Node<T> node = new Node<T>(x);
         // concatenate node into min list
@@ -231,26 +188,12 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         return node;
     }
 
-    /**
-     * Returns the smallest element in the heap. This smallest element
-     * is the one with the minimum key value.
-     *
-     * <p><em>Running time: O(1)</em></p>
-     *
-     * @return  heap node with the smallest key, or null if empty.
-     */
+  
     public Node<T> min() {
         return min;
     }
 
-    /**
-     * Removes the smallest element from the heap. This will cause
-     * the trees in the heap to be consolidated, if necessary.
-     *
-     * <p><em>Running time: O(log n) amortized</em></p>
-     *
-     * @return  data object with the smallest key.
-     */
+   
     public T removeMin() {
         Node<T> z = min;
         if (z == null) {
@@ -285,14 +228,6 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         return z.data;
     }
 
-    /**
-     * Returns the size of the heap which is measured in the
-     * number of elements contained in the heap.
-     *
-     * <p><em>Running time: O(1)</em></p>
-     *
-     * @return  number of elements in the heap.
-     */
     public int size() {
         return n;
     }
@@ -301,16 +236,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
 		return n;
 	}
 
-    /**
-     * Joins two Fibonacci heaps into a new one. No heap consolidation is
-     * performed at this time. The two root lists are simply joined together.
-     *
-     * <p><em>Running time: O(1)</em></p>
-     *
-     * @param  H1  first heap
-     * @param  H2  second heap
-     * @return  new heap containing H1 and H2
-     */
+  
     public static FibonacciHeap union(FibonacciHeap H1, FibonacciHeap H2) {
         FibonacciHeap H = new FibonacciHeap();
         if (H1 != null && H2 != null) {
@@ -339,14 +265,6 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
 		return l;
 	}
 
-    /**
-     * Implements a node of the Fibonacci heap. It holds the information
-     * necessary for maintaining the structure of the heap. It acts as
-     * an opaque handle for the data element, and serves as the key to
-     * retrieving the data from the heap.
-     *
-     * @author  Nathan Fiedler
-     */
     public static class Node<T extends Comparable<T>> {
     	// Data object for this node, holds the key value. 
         private T data;
@@ -376,14 +294,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
 		public Integer getKey() {return key;}
 		public T getData() {return data;}
 
-        /**
-         * Performs a cascading cut operation. Cuts this from its parent
-         * and then does the same for its parent, and so on up the tree.
-         *
-         * <p><em>Running time: O(log n)</em></p>
-         *
-         * @param  min  the minimum heap node, to which nodes will be added.
-         */
+        
         public void cascadingCut(Node<T> min) {
             Node<T> z = parent;
             // if there's a parent...
@@ -400,15 +311,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
             }
         }
 
-        /**
-         * The reverse of the link operation: removes x from the child
-         * list of this node.
-         *
-         * <p><em>Running time: O(1)</em></p>
-         *
-         * @param  x    child to be removed from this Node<T>'s child list
-         * @param  min  the minimum heap node, to which x is added.
-         */
+        
         public void cut(Node<T> x, Node<T> min) {
             // remove x from childlist and decrement degree
             x.left.right = x.right;
@@ -431,13 +334,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
             x.mark = false;
         }
 
-        /**
-         * Make this node a child of the given parent node. All linkages
-         * are updated, the degree of the parent is incremented, and
-         * mark is set to false.
-         *
-         * @param  parent  the new parent node.
-         */
+        
         public void link(Node<T> parent) {
             // Note: putting this code here in Node makes it 7x faster
             // because it doesn't have to use generated accessor methods,
