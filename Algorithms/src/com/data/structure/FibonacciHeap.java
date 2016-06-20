@@ -73,13 +73,7 @@ public class FibonacciHeap<T extends Comparable<T>> implements PriorityQueue<T> 
         n = 0;
     }
 
-    /**
-     * Consolidates the trees in the heap by joining trees of equal
-     * degree until there are no more trees of equal degree in the
-     * root list.
-     *
-     * <p><em>Running time: O(log n) amortized</em></p>
-     */
+   
     private void consolidate() {
         // The magic 45 comes from log base phi of Integer.MAX_VALUE,
         // which is the most elements we will ever hold, and log base
