@@ -13,18 +13,18 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 
 	class RedBlackNode<T extends Comparable<T>> {
 
-		/** Possible color for this node */
+		// Possible color for this node 
 		public static final boolean BLACK = true;
-		/** Possible color for this node */
+		// Possible color for this node
 		public static final boolean RED = false;
 		// the key of each node
 		public T data;
 
-		/** Parent of node */
+		// Parent of node 
 		RedBlackNode<T> parent;
-		/** Left child */
+		// Left child 
 		RedBlackNode<T> left;
-		/** Right child */
+		// Right child
 		RedBlackNode<T> right;
 
 		// the color of a node
@@ -209,7 +209,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 				return false;
 			}
 		};
-		// TODO Auto-generated method stub
+		// TODO 
 		return it;
 
 	}
@@ -430,7 +430,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 				// black children, we can switch the
 				// colors of Brother and x.parent and then perform a
 				// left-rotation on x.parent
-				// The new Brother of x, which is one of Brother’s children
+				// The new Brother of x, which is one of BrotherÂ’s children
 				// prior to the rotation, is now black, and thus we have
 				// converted case 1 into case 2,
 				// 3, or 4.
@@ -443,16 +443,16 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 
 					// Cases 2, 3, and 4 occur when node Brother is black; they
 					// are distinguished by the
-					// colors of Brother’s children.
-					// Case 1 x’s sibling Brother is black, and both of
-					// Brother’s children are black
+					// colors of BrotherÂ’s children.
+					// Case 1 xÂ’s sibling Brother is black, and both of
+					// BrotherÂ’s children are black
 				}
 				if (brother.color == RedBlackNode.BLACK && brother.left.color == RedBlackNode.BLACK
 						&& brother.right.color == RedBlackNode.BLACK) {
 					brother.color = RedBlackNode.RED;
 					x = x.parent;
-					// Case 3 x’s sibling Brother is black, Brother’s left child
-					// is red, and Brother’s right child is black
+					// Case 3 xÂ’s sibling Brother is black, BrotherÂ’s left child
+					// is red, and BrotherÂ’s right child is black
 				} else if (brother.color == RedBlackNode.BLACK && brother.left.color == RedBlackNode.RED
 						&& brother.right.color == RedBlackNode.BLACK) {
 					brother.left.color = RedBlackNode.BLACK;
@@ -460,7 +460,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 					RightRotate(brother);
 					brother = x.parent.right;
 
-					// Case 4 x’s sibling Brother is black, and Brother’s right
+					// Case 4 xÂ’s sibling Brother is black, and BrotherÂ’s right
 					// child is red
 					brother.color = x.parent.color;
 					x.parent.color = RedBlackNode.BLACK;
@@ -476,7 +476,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 				// black children, we can switch the
 				// colors of Brother and x.parent and then perform a
 				// right-rotation on x.parent
-				// The new Brother of x, which is one of Brother’s children
+				// The new Brother of x, which is one of BrotherÂ’s children
 				// prior to the rotation, is now black, and thus we have
 				// converted case 1 into case 2,
 				// 3, or 4.
@@ -489,16 +489,16 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 
 					// Cases 2, 3, and 4 occur when node Brother is black; they
 					// are distinguished by the
-					// colors of Brother’s children.
-					// Case 1 x’s sibling Brother is black, and both of
-					// Brother’s children are black
+					// colors of BrotherÂ’s children.
+					// Case 1 xÂ’s sibling Brother is black, and both of
+					// BrotherÂ’s children are black
 				}
 				if (brother.color == RedBlackNode.BLACK && brother.left.color == RedBlackNode.BLACK
 						&& brother.right.color == RedBlackNode.BLACK) {
 					brother.color = RedBlackNode.RED;
 					x = x.parent;
-					// Case 3 x’s sibling Brother is black, Brother’s right
-					// child is red, and Brother’s left child is black
+					// Case 3 xÂ’s sibling Brother is black, BrotherÂ’s right
+					// child is red, and BrotherÂ’s left child is black
 				} else if (brother.color == RedBlackNode.BLACK && brother.right.color == RedBlackNode.RED
 						&& brother.left.color == RedBlackNode.BLACK) {
 					brother.right.color = RedBlackNode.BLACK;
@@ -506,7 +506,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Set<T> {
 					LeftRotate(brother);
 					brother = x.parent.right;
 
-					// Case 4 x’s sibling Brother is black, and Brother’s left
+					// Case 4 xÂ’s sibling Brother is black, and BrotherÂ’s left
 					// child is red
 					brother.color = x.parent.color;
 					x.parent.color = RedBlackNode.BLACK;
